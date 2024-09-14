@@ -9,7 +9,11 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRouter from "./routes/authRoute.js";
+import userRouter from "./routes/userRoute.js";
+import postRouter from "./routes/postRoute.js";
 import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/post.js";
+import { verifyToken } from "./middleware/auth.js";
 
 /****   CONFIGURATIONS       */
 
@@ -40,8 +44,11 @@ const upload = multer({ storage });
 
 //**   Routes WITH FILES     */
 
-app.post("/auth/register", upload.single("picture"), register);
+app.post("/auth/register", upload.single("picture"), verifyToken, register);
+app.post("posts", verifyToken, upload.single("picture"), createPost);
 app.use("/auth", authRouter);
+app.use("/users", userRouter);
+app.use("/posts", postRouter);
 
 /** Mongoose Setup  */
 
