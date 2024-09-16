@@ -29,3 +29,9 @@ function App() {
 }
 
 export default App;
+
+// MONGO_DB = mongodb+srv://AmarYasser:XQ5mhgrh2Oqbuv6J@social-app.4zzpg.mongodb.net/?retryWrites=true&w=majority&appName=Social-App
+
+// PORT = 3001
+
+// TOKEN_SECRET = AmarYasser
